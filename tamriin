@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        double product = 1;
+        while (true)
+        {
+            Console.Write("Enter a number (0 to end): ");
+            double num = double.Parse(Console.ReadLine() ?? "0");
+
+            if (num == 0)
+                break;
+
+            product *= num;
+        }
+
+        Console.WriteLine($"Product of entered numbers = {product}");
+    }
+}
