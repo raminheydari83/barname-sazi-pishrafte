@@ -1,0 +1,28 @@
+﻿using System;
+
+public class Exercise1
+{
+    public static void Main(string[] args)
+    {
+        Console.Write("Enter a number: ");
+
+        // Reading the input and converting to an integer
+        int number;
+
+        if (int.TryParse(Console.ReadLine(), out number))
+        {
+            // The condition: number < 10 AND number is even (number % 2 == 0)
+            if (number < 10 && number % 2 == 0)
+            {
+                Console.WriteLine("TRUE!");
+            }
+        }
+        else
+        {
+            // Optional: Error message for invalid input
+            Console.WriteLine("Invalid input. Please enter an integer.");
+        }
+
+        Console.ReadKey();
+    }
+}
