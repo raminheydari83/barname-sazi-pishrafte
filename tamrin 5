@@ -1,0 +1,107 @@
+using System;
+
+public class TriangleCalculator
+{
+    public static double CalculatePerimeter(double a, double b, double c)
+    {
+        return a + b + c;
+    }
+
+    public static double CalculateArea(double a, double b, double c)
+    {
+        double s = CalculatePerimeter(a, b, c) / 2;
+
+        if (s <= a  s <= b  s <= c)
+        {
+            Console.WriteLine("Error: These side lengths do not form a valid triangle.");
+            return 0; 
+        }
+
+        double area = Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+        return area;
+    }
+
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("--- Exercise 5: Triangle Calculator ---");
+        
+        // Reading side lengths from the user
+        Console.Write("Enter side a: ");
+        double sideA = Convert.ToDouble(Console.ReadLine());
+        
+        Console.Write("Enter side b: ");
+        double sideB = Convert.ToDouble(Console.ReadLine());
+        
+        Console.Write("Enter side c: ");
+        double sideC = Convert.ToDouble(Console.ReadLine());
+
+        // Calling the methods
+        double perimeter = CalculatePerimeter(sideA, sideB, sideC);
+        double area = CalculateArea(sideA, sideB, sideC);
+
+        // Displaying results
+        Console.WriteLine($"Perimeter: {perimeter:F2}");
+        if (area > 0)
+        {
+            Console.WriteLine($"Area: {area:F2}");
+        }
+        
+        Console.ReadKey();
+    }
+}
+
+
+
+
+
+
+sol2
+using System;
+
+public class RecursiveMultiplier
+{
+    public static int Multiply(int a, int b)
+    {
+        if (b == 0)
+        {
+            return 0;
+        }
+        
+        if (b == 1)
+        {
+            return a;
+        }
+        
+      
+        return a + Multiply(a, b - 1);
+    }
+
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("--- Exercise 6: Recursive Multiplication ---");
+        
+        // Reading two integers from the user
+        Console.Write("Enter the first number (A): ");
+        int numA = Convert.ToInt32(Console.ReadLine());
+        
+        Console.Write("Enter the second number (B): ");
+        int numB = Convert.ToInt32(Console.ReadLine());
+
+        // Handling negative numbers (The basic recursive model assumes positive numbers. 
+        // We use Math.Abs and reapply the sign.)
+        int sign = 1;
+        if ((numA < 0 && numB > 0) || (numA > 0 && numB < 0))
+        {
+            sign = -1;
+        }
+        
+        int absoluteResult = Multiply(Math.Abs(numA), Math.Abs(numB));
+        int finalResult = absoluteResult * sign;
+
+
+        // Displaying results
+        Console.WriteLine($"Result of {numA} x {numB} using recursion: {finalResult}");
+        
+        Console.ReadKey();
+    }
+}
