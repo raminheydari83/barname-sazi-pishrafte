@@ -1,0 +1,66 @@
+}
+        }
+        Console.WriteLine($"Loaded {studentData.Count} records from {FilePath}");
+    }
+
+    // متد کمکی: ذخیره‌سازی داده‌ها در فایل
+    private void SaveDataToFile()
+    {
+        // تبدیل اشیاء دیکشنری به رشته‌های قابل ذخیره‌سازی در فایل
+        var lines = studentData.Values.Select(s => s.ToString()).ToArray();
+        
+        // نوشتن تمامی خطوط در فایل
+        File.WriteAllLines(FilePath, lines);
+        Console.WriteLine("Data saved to C:\\UNI.txt");
+    }
+
+    // متد اصلی اجرای منو
+    public void RunMenu()
+    {
+        bool running = true;
+        while (running)
+        {
+            Console.WriteLine("\n=============================");
+            Console.WriteLine("C# Student Management System");
+            Console.WriteLine("1. Add Student Information");
+            Console.WriteLine("2. View Student Information");
+            Console.WriteLine("3. Delete a Student");
+            Console.WriteLine("4. Exit (and Save)");
+            Console.WriteLine("=============================");
+            Console.Write("Choose an option: ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    AddStudent();
+                    break;
+                case "2":
+                    ViewStudents();
+                    break;
+                case "3":
+                    DeleteStudent();
+                    break;
+                case "4":
+                    // متد ۴: خروج
+                    running = false;
+                    SaveDataToFile();
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // ایجاد یک نمونه از کلاس مدیریت دانشجو و اجرای منو
+        StudentManager manager = new StudentManager();
+        manager.RunMenu();
+    }
+}
