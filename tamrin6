@@ -3,18 +3,14 @@
         Console.WriteLine($"Loaded {studentData.Count} records from {FilePath}");
     }
 
-    // متد کمکی: ذخیره‌سازی داده‌ها در فایل
     private void SaveDataToFile()
     {
-        // تبدیل اشیاء دیکشنری به رشته‌های قابل ذخیره‌سازی در فایل
         var lines = studentData.Values.Select(s => s.ToString()).ToArray();
         
-        // نوشتن تمامی خطوط در فایل
         File.WriteAllLines(FilePath, lines);
         Console.WriteLine("Data saved to C:\\UNI.txt");
     }
 
-    // متد اصلی اجرای منو
     public void RunMenu()
     {
         bool running = true;
@@ -59,7 +55,6 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // ایجاد یک نمونه از کلاس مدیریت دانشجو و اجرای منو
         StudentManager manager = new StudentManager();
         manager.RunMenu();
     }
