@@ -1,0 +1,117 @@
+using System;
+
+public class Exercise3
+{
+    public static void Main(string[] args)
+    {
+        // Initializing counters
+        int evenCount = 0;
+        int oddCount = 0;
+        
+        Console.WriteLine("--- Exercise 3: Counting Even and Odd Numbers ---");
+        Console.WriteLine("Please enter 10 integers:");
+
+        // Loop to read 10 numbers from the user
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.Write($"Enter number {i}: ");
+            
+            // Using try-parse for robustness (good practice)
+            if (int.TryParse(Console.ReadLine(), out int number))
+            {
+                // Check if the number is even (remainder of division by 2 is 0)
+                if (number % 2 == 0)
+                {
+                    evenCount++; // Increment even counter
+                }
+                else
+                {
+                    oddCount++; // Increment odd counter
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter an integer.");
+                i--; // Decrement i to re-read the input for the current count
+            }
+        }
+
+        // Displaying the final results
+        Console.WriteLine("\n--- Results ---");
+        Console.WriteLine($"Total even numbers: {evenCount}");
+        Console.WriteLine($"Total odd numbers: {oddCount}");
+
+        Console.ReadKey();
+    }
+}
+
+
+
+
+
+
+
+using System;
+
+public class Exercise4
+{
+    public static void Main(string[] args)
+    {
+        // Array to store 5 numbers
+        int[] numbers = new int[5];
+        
+        // Counter to track how many times the number 2 has been seen
+        int countOfTwo = 0; 
+        
+        // Variable to store the index of the SECOND occurrence
+        int secondTwoIndex = -1; 
+        
+        Console.WriteLine("\n--- Exercise 4: Finding the Second '2' ---");
+        Console.WriteLine("Please enter 5 integers:");
+
+        // Loop 1: Reading 5 numbers into the array
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write($"Enter number {i + 1}: ");
+            if (int.TryParse(Console.ReadLine(), out numbers[i]))
+            {
+                // Input successful
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter an integer.");
+                i--; // Decrement i to re-read the input
+            }
+        }
+        
+        // Loop 2: Iterating through the array to find the second '2'
+        for (int i = 0; i < 5; i++)
+        {
+            if (numbers[i] == 2)
+            {
+                countOfTwo++;
+                
+                // Check if this is the SECOND time we have seen '2'
+                if (countOfTwo == 2)
+                {
+                    // Store the index (position i) and break the loop since we found what we needed
+                    secondTwoIndex = i + 1; // +1 because index starts at 0, but user expects position 1, 2, 3...
+                    break; 
+                }
+            }
+        }
+        
+        // Displaying the result
+        Console.WriteLine("\n--- Result ---");
+        if (secondTwoIndex != -1)
+        {
+            Console.WriteLine($"YES! The second number '2' was found at position: {secondTwoIndex}");
+        }
+        else
+        {
+            Console.WriteLine("The number '2' was not found twice in the list.");
+        }
+
+        Console.ReadKey();
+    }
+}
